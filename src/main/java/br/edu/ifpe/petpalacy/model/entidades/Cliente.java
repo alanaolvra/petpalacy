@@ -41,11 +41,11 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     private String nome;
     private String cpf;
     private String telefone;
-    @OneToOne(cascade=CascadeType.ALL)  
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
     private String email;
     private String senha;
@@ -63,11 +63,11 @@ public class Cliente implements Serializable {
         this.senha = senha;
     }
 
-    public Integer getIdCliente() {
+    public Long getId() {
         return id;
     }
 
-    public void setIdCliente(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -120,36 +120,32 @@ public class Cliente implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + this.id;
-        return hash;
-    }
-
-    @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Cliente)) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         Cliente cliente = (Cliente) obj;
+        return id.equals(cliente.id);
+    }
 
-        if (cliente.id == id
-                && cliente.cpf == cpf
-                && cliente.nome == nome
-                && cliente.telefone == telefone
-                && cliente.endereco == endereco
-                && cliente.email == email
-                && cliente.senha == senha){
-            return true;
-        }
-        return false;
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", endereco=" + endereco + ", email=" + email + ", senha=" + senha + '}';
+        return "Cliente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", endereco=" + endereco +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                '}';
     }
-
-    
-
 }
