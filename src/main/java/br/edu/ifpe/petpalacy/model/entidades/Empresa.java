@@ -21,6 +21,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
+
 package br.edu.ifpe.petpalacy.model.entidades;
 
 import java.io.Serializable;
@@ -31,10 +32,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-/**
- *
- * @author izaquiel cavalcante da silva izaquiel_cavalcante@hotmail.com
- */
 @Entity
 public class Empresa implements Serializable {
 
@@ -62,11 +59,11 @@ public class Empresa implements Serializable {
         this.endereco = new Endereco();
     }
 
-    public Integer getIdEmpresa() {
+    public Integer getId() {
         return id;
     }
 
-    public void setIdEmpresa(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -120,49 +117,37 @@ public class Empresa implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 47 * hash + this.id;
-        return hash;
+        return Objects.hash(id);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Empresa other = (Empresa) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (!Objects.equals(this.cnpj, other.cnpj)) {
-            return false;
-        }
-        if (!Objects.equals(this.senha, other.senha)) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        if (!Objects.equals(this.telefone, other.telefone)) {
-            return false;
-        }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.endereco, other.endereco)) {
-            return false;
-        }
-        return true;
+        Empresa empresa = (Empresa) obj;
+        return Objects.equals(id, empresa.id)
+                && Objects.equals(cnpj, empresa.cnpj)
+                && Objects.equals(senha, empresa.senha)
+                && Objects.equals(email, empresa.email)
+                && Objects.equals(telefone, empresa.telefone)
+                && Objects.equals(nome, empresa.nome)
+                && Objects.equals(endereco, empresa.endereco);
     }
 
     @Override
     public String toString() {
-        return "Empresa{" + "id=" + id + ", cnpj=" + cnpj + ", senha=" + senha
-                + ", email=" + email + ", telefone=" + telefone + ", nome=" + nome
-                + ", endereco=" + endereco + '}';
+        return "Empresa{" +
+                "id=" + id +
+                ", cnpj='" + cnpj + '\'' +
+                ", senha='" + senha + '\'' +
+                ", email='" + email + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", nome='" + nome + '\'' +
+                ", endereco=" + endereco +
+                '}';
     }
-
 }
