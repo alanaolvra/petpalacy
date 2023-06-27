@@ -110,14 +110,15 @@ public class Endereco implements Serializable {
         }
         Endereco endereco = (Endereco) obj;
 
-        if(endereco.id == id
-                && endereco.bairro == bairro
-                && endereco.cidade == cidade
-                && endereco.logradouro == logradouro
-                && endereco.numero == numero) {
-            return true;
-        }
-        return false;
+        return compareAttributes(endereco);
+    }
+
+    private boolean compareAttributes(Endereco endereco) {
+        return endereco.id == id
+                && endereco.bairro.equals(bairro)
+                && endereco.cidade.equals(cidade)
+                && endereco.logradouro.equals(logradouro)
+                && endereco.numero == numero;
     }
 
     @Override
