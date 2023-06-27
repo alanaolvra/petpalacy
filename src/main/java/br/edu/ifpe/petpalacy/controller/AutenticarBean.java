@@ -4,7 +4,20 @@ public class AutenticarBean implements Serializable {
     private Cliente clienteLogin = null;
     private Empresa empresaLogin = null;
 
-public AutenticarBean(){
-    clienteLogin = new Cliente();
-    empresaLogin = new Empresa();
+    public AutenticarBean() {
+        clienteLogin = new Cliente();
+        empresaLogin = new Empresa();
+    }
+
+    
+
+    public boolean autenticarUsuario() {
+       
+    }
+
+    public void limparCredenciais() {
+       
+    }
+
+    
 }
