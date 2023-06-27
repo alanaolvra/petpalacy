@@ -22,6 +22,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
+
 package br.edu.ifpe.petpalacy.model.entidades;
 
 import java.io.Serializable;
@@ -32,10 +33,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-/**
- *
- * @author Wemerson Diogenes da Silva <wemersondiogenes16@gmail.com>
- */
 @Entity
 public class Cliente implements Serializable {
 
@@ -63,11 +60,11 @@ public class Cliente implements Serializable {
         this.senha = senha;
     }
 
-    public Integer getIdCliente() {
+    public Integer getId() {
         return id;
     }
 
-    public void setIdCliente(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -122,7 +119,7 @@ public class Cliente implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + this.id;
+        hash = 23 * hash + id.hashCode();
         return hash;
     }
 
@@ -133,23 +130,25 @@ public class Cliente implements Serializable {
         }
         Cliente cliente = (Cliente) obj;
 
-        if (cliente.id == id
-                && cliente.cpf == cpf
-                && cliente.nome == nome
-                && cliente.telefone == telefone
-                && cliente.endereco == endereco
-                && cliente.email == email
-                && cliente.senha == senha){
-            return true;
-        }
-        return false;
+        return cliente.id.equals(id)
+                && cliente.cpf.equals(cpf)
+                && cliente.nome.equals(nome)
+                && cliente.telefone.equals(telefone)
+                && cliente.endereco.equals(endereco)
+                && cliente.email.equals(email)
+                && cliente.senha.equals(senha);
     }
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", endereco=" + endereco + ", email=" + email + ", senha=" + senha + '}';
+        return "Cliente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", endereco=" + endereco +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                '}';
     }
-
-    
-
 }
