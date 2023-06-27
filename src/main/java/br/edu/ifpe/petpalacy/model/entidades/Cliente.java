@@ -127,23 +127,25 @@ public class Cliente implements Serializable {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Cliente)) {
-            return false;
-        }
-        Cliente cliente = (Cliente) obj;
-
-        if (cliente.id == id
-                && cliente.cpf == cpf
-                && cliente.nome == nome
-                && cliente.telefone == telefone
-                && cliente.endereco == endereco
-                && cliente.email == email
-                && cliente.senha == senha){
-            return true;
-        }
+   public boolean equals(Object obj) {
+    if (!(obj instanceof Cliente)) {
         return false;
     }
+    Cliente cliente = (Cliente) obj;
+
+    return compareAttributes(cliente);
+}
+
+private boolean compareAttributes(Cliente cliente) {
+    return cliente.id.equals(id)
+            && cliente.cpf.equals(cpf)
+            && cliente.nome.equals(nome)
+            && cliente.telefone.equals(telefone)
+            && cliente.endereco.equals(endereco)
+            && cliente.email.equals(email)
+            && cliente.senha.equals(senha);
+}
+
 
     @Override
     public String toString() {
