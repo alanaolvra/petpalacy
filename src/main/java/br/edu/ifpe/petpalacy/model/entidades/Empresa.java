@@ -40,13 +40,13 @@ public class Empresa implements Serializable {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     private String cnpj;
     private String senha;
     private String email;
     private String telefone;
     private String nome;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
     public Empresa(String cnpj, String senha, String email, String telefone, String nome, Endereco endereco) {
@@ -62,11 +62,11 @@ public class Empresa implements Serializable {
         this.endereco = new Endereco();
     }
 
-    public Integer getIdEmpresa() {
+    public Long getId() {
         return id;
     }
 
-    public void setIdEmpresa(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -119,50 +119,32 @@ public class Empresa implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 47 * hash + this.id;
-        return hash;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Empresa empresa = (Empresa) obj;
+        return Objects.equals(id, empresa.id);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Empresa other = (Empresa) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (!Objects.equals(this.cnpj, other.cnpj)) {
-            return false;
-        }
-        if (!Objects.equals(this.senha, other.senha)) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        if (!Objects.equals(this.telefone, other.telefone)) {
-            return false;
-        }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.endereco, other.endereco)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(id, cnpj, senha, email, telefone, nome, endereco);
     }
 
     @Override
     public String toString() {
-        return "Empresa{" + "id=" + id + ", cnpj=" + cnpj + ", senha=" + senha
-                + ", email=" + email + ", telefone=" + telefone + ", nome=" + nome
-                + ", endereco=" + endereco + '}';
+        return "Empresa{" +
+                "id=" + id +
+                ", cnpj='" + cnpj + '\'' +
+                ", senha='" + senha + '\'' +
+                ", email='" + email + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", nome='" + nome + '\'' +
+                ", endereco=" + endereco +
+                '}';
     }
-
 }
