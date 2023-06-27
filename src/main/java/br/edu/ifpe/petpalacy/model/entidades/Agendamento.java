@@ -69,54 +69,6 @@ public class Agendamento implements Serializable {
         this.statusAgen = statusAgen;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Servico getServico() {
-        return servico;
-    }
-
-    public void setServico(Servico servico) {
-        this.servico = servico;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
-    public StatusAgen getStatusAgen() {
-        return statusAgen;
-    }
-
-    public void setStatusAgen(StatusAgen statusAgen) {
-        this.statusAgen = statusAgen;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
