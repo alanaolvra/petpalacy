@@ -32,6 +32,16 @@ import java.util.InputMismatchException;
  */
 public class ValidaCPF {
 
+    public static final int CPF_PRIMEIRO_GRUPO_INICIO = 0;
+    public static final int CPF_PRIMEIRO_GRUPO_FIM = 3;
+    public static final int CPF_SEGUNDO_GRUPO_INICIO = 3;
+    public static final int CPF_SEGUNDO_GRUPO_FIM = 6;
+    public static final int CPF_TERCEIRO_GRUPO_INICIO = 6;
+    public static final int CPF_TERCEIRO_GRUPO_FIM = 9;
+    public static final int CPF_QUARTO_GRUPO_INICIO = 9;
+    public static final int CPF_QUARTO_GRUPO_FIM = 11;
+
+
     public static boolean isCPF(String CPF) {
         CPF = CPF.replace(".", "");
         CPF = CPF.replace("-", "");
@@ -91,7 +101,9 @@ public class ValidaCPF {
     }
 
     public static String imprimeCPF(String CPF) {
-        return (CPF.substring(0, 3) + "." + CPF.substring(3, 6) + "."
-                + CPF.substring(6, 9) + "-" + CPF.substring(9, 11));
-    }
+    return (CPF.substring(CPF_PRIMEIRO_GRUPO_INICIO, CPF_PRIMEIRO_GRUPO_FIM) + "."
+            + CPF.substring(CPF_SEGUNDO_GRUPO_INICIO, CPF_SEGUNDO_GRUPO_FIM) + "."
+            + CPF.substring(CPF_TERCEIRO_GRUPO_INICIO, CPF_TERCEIRO_GRUPO_FIM) + "-"
+            + CPF.substring(CPF_QUARTO_GRUPO_INICIO, CPF_QUARTO_GRUPO_FIM));
+}
 }
