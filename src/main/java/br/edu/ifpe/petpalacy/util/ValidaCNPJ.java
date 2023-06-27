@@ -25,6 +25,7 @@ SOFTWARE.
 package br.edu.ifpe.petpalacy.util;
 
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 
 /**
@@ -35,18 +36,19 @@ import java.util.InputMismatchException;
 
 public class ValidaCNPJ {
 
+    public static final int CNPJ_LENGTH = 14;
+    public static final String[] CNPJ_INVALIDOS = {"00000000000000", "11111111111111", "22222222222222", "33333333333333",
+                                                    "44444444444444", "55555555555555", "66666666666666", "77777777777777",
+                                                    "88888888888888", "99999999999999"};
+
+
     public static boolean isCNPJ(String CNPJ) {
         CNPJ = CNPJ.replace(".", "");
         CNPJ = CNPJ.replace("-", "");
         CNPJ = CNPJ.replace("/", "");
 
-        if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111")
-                || CNPJ.equals("22222222222222") || CNPJ.equals("33333333333333")
-                || CNPJ.equals("44444444444444") || CNPJ.equals("55555555555555")
-                || CNPJ.equals("66666666666666") || CNPJ.equals("77777777777777")
-                || CNPJ.equals("88888888888888") || CNPJ.equals("99999999999999")
-                || (CNPJ.length() != 14)) {
-            return (false);
+        if (Arrays.asList(CNPJ_INVALIDOS).contains(CNPJ) || CNPJ.length() != CNPJ_LENGTH) {
+            return false;
         }
 
         char dig13, dig14;
@@ -56,7 +58,6 @@ public class ValidaCNPJ {
             sm = 0;
             peso = 2;
             for (i = 11; i >= 0; i--) {
-
                 num = (int) (CNPJ.charAt(i) - 48);
                 sm = sm + (num * peso);
                 peso = peso + 1;
@@ -90,16 +91,11 @@ public class ValidaCNPJ {
                 dig14 = (char) ((11 - r) + 48);
             }
 
-            if ((dig13 == CNPJ.charAt(12)) && (dig14 == CNPJ.charAt(13))) {
-                return (true);
-            } else {
-                return (false);
-            }
+            return (dig13 == CNPJ.charAt(12)) && (dig14 == CNPJ.charAt(13));
         } catch (InputMismatchException erro) {
-            return (false);
-        }
+            return false;
     }
-
+}
     public static String imprimeCNPJ(String CNPJ) {
         return (CNPJ.substring(0, 2) + "." + CNPJ.substring(2, 5) + "."
                 + CNPJ.substring(5, 8) + "." + CNPJ.substring(8, 12) + "-"
